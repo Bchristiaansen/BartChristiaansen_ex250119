@@ -1,0 +1,16 @@
+normalisation exercise
+UNF   DB(Personnel number, Name, Date of birth, Lab code, Lab name, Research code, Research description, Research supervisor)
+
+To get to 1NF repeating groups have to be eleminated:
+
+1NF   DB(Personnel number, Name, Date of birth, Lab code, Lab name) key: Personnel number
+
+         RESEARCH(Personnel number, Research code, Research description, Research supervisor) key: Personnel number, Research code
+
+To get to 2NF Every non-prime attribute of the table is dependent on the whole key of every candidate key
+
+Research description and Research supervisor are not dependent on the whole key of RESEARCH, only on Research code.
+
+That is why I will split up the RESEARCH table.
+
+2NF  DB(Personnel 
