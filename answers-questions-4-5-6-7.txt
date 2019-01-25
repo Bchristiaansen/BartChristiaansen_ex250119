@@ -1,0 +1,54 @@
+Question 4:
+select gene_name, (seq_region_end - seq_region_start + 1) as length from gene order by length asc limit 1;
++-----------+--------+
+| gene_name | length |
++-----------+--------+
+| TRDD1     |      8 |
++-----------+--------+
+1 row in set (0.09 sec)
+
+Question 5:
+select gene_name, count(*) as Nr_of_transcripts from gene g join transcript t on g.gene_id = t.gene_id group by g.gene_id order by Nr_of_transcripts desc limit 1;
++-----------+-------------------+
+| gene_name | Nr_of_transcripts |
++-----------+-------------------+
+| NDRG2     |                80 |
++-----------+-------------------+
+1 row in set (0.33 sec)
+
+Question 6.1:
+select chromosome from gene where description like "%cancer%" group by chromosome order by count(*) desc limit 1 offset 1;
++------------+
+| chromosome |
++------------+
+| 9          |
++------------+
+1 row in set (0.09 sec)
+
+Question 6.2:
+select count(*) as Nr_of_exons from gene g join transcript t on g.gene_id = t.gene_id join exon_transcript et on et.transcript_id = t.transcript_id where chromosome = 9;
++-------------+
+| Nr_of_exons |
++-------------+
+|       45679 |
++-------------+
+1 row in set, 5348 warnings (0.13 sec)
+
+Question 7:
+mysql> select count(*) from exon_transcript;
++----------+
+| count(*) |
++----------+
+|  1178393 |
++----------+
+1 row in set (0.27 sec)
+
+mysql> select count(*) from exon;
++----------+
+| count(*) |
++----------+
+|   642590 |
++----------+
+1 row in set (0.17 sec)
+
+
